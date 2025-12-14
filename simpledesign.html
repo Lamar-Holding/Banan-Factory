@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Banan Factory | Coming Soon</title>
+    <link rel="icon" type="image/png" href="Banan Factory.png">
+    <link rel="apple-touch-icon" href="Banan Factory.png">
+    
+    <!-- Tailwind CSS for styling framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              banan: {
+                dark: '#0B1C28', // Dark Navy
+                DEFAULT: '#142E40', // Primary Brand Color
+                light: '#2A4A61', // Lighter accent
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              serif: ['Georgia', 'serif'],
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 1s ease-out forwards',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+
+    <style>
+      /* Custom CSS for things Tailwind handles less gracefully */
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
+        margin: 0;
+        overflow: hidden; /* Prevent scrolling for the full-screen effect */
+      }
+
+      /* Canvas Positioning */
+      #gravityCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none; /* Let clicks pass through to content */
+      }
+
+      /* Progress Bar Shimmer Effect */
+      .progress-shimmer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          transparent 100%
+        );
+        transform: translateX(-100%);
+        animation: shimmer 2s infinite linear;
+      }
+
+      @keyframes shimmer {
+        100% { transform: translateX(100%); }
+      }
+
+      /* Logo Shape Styles */
+      .logo-bar {
+        background-color: #142E40;
+        border-top-left-radius: 9999px;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+  <body class="flex flex-col min-h-screen relative text-slate-800 selection:bg-banan selection:text-white">
+
+    <!-- Interactive Background -->
+    <canvas id="gravityCanvas"></canvas>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center z-10 px-4 relative">
+      
+      <!-- Card Container -->
+      <div class="w-full max-w-2xl bg-white/80 backdrop-blur-md p-10 md:p-14 rounded-2xl shadow-2xl border border-white/60 animate-fade-in-up transform hover:shadow-[0_25px_60px_-10px_rgba(0,0,0,0.15)] transition-shadow duration-500">
+        
+        <!-- Logo Section -->
+        <div class="flex flex-col items-center justify-center mb-10">
+          <!-- Fallback Logo Construction (CSS Shapes) to ensure it looks nice without external assets -->
+          <div id="logo-container" class="flex flex-col items-center">
+             <div class="flex items-end space-x-2 mb-3">
+                <div class="logo-bar w-5 h-14"></div>
+                <div class="logo-bar w-5 h-20"></div>
+                <div class="logo-bar w-5 h-16"></div>
+             </div>
+             <h1 class="text-5xl md:text-6xl font-bold text-banan tracking-tight">
+               BANAN
+             </h1>
+             <p class="text-[0.65rem] md:text-xs text-banan-light tracking-[0.25em] mt-1 font-bold uppercase">
+               Modular & Prefab Solution
+             </p>
+          </div>
+        </div>
+
+        <!-- Text Content -->
+        <div class="text-center space-y-6">
+          <h2 class="text-3xl md:text-4xl font-light text-slate-800">
+            We are coming soon
+          </h2>
+          
+          <p class="text-slate-500 max-w-lg mx-auto leading-relaxed text-lg">
+            We are preparing to launch a revolutionary experience in modular construction. 
+            Stay tuned for the future of prefab solutions.
+          </p>
+
+          <!-- Loader Section -->
+          <div class="pt-10 w-full flex flex-col items-center">
+            
+            <!-- Requested Text -->
+            <span class="text-xl md:text-2xl font-serif italic text-banan mb-4 block">
+              Crafting Industrial Excellence
+            </span>
+            
+            <!-- Progress Bar Container -->
+            <div class="w-full max-w-md">
+              <div class="flex justify-between items-end mb-2">
+                <span class="text-banan text-xs font-bold tracking-widest uppercase opacity-70 animate-pulse-slow">
+                  System Initialization
+                </span>
+                <span id="loading-percentage" class="text-banan-light text-xs font-mono font-bold">
+                  0%
+                </span>
+              </div>
+              
+              <div class="h-2 w-full bg-slate-200 overflow-hidden rounded-full relative shadow-inner">
+                <!-- Actual Fill -->
+                <div 
+                    id="progress-fill" 
+                    class="h-full bg-banan transition-all duration-300 ease-out"
+                    style="width: 0%"
+                ></div>
+                <!-- Shine Effect -->
+                <div class="progress-shimmer"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-6 text-center text-slate-400 text-sm font-medium">
+      <p class="mb-2">&copy; <span id="year"></span> Banan Factory. All Rights Reserved.</p>
+      <div class="flex items-center justify-center gap-2 opacity-80 hover:opacity-100 transition-opacity text-banan-light">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>Based in Saudi Arabia</span>
+      </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /**
+       * Loading Bar Animation Logic
+       */
+      function initLoadingBar() {
+        const fill = document.getElementById('progress-fill');
+        const percentageText = document.getElementById('loading-percentage');
+        let progress = 0;
+        
+        // Use setInterval to simulate loading
+        const interval = setInterval(() => {
+          // Increment logic: fast at first, slows down near the end
+          const remaining = 100 - progress;
+          const increment = Math.max(0.5, remaining * 0.1 * Math.random()); // Randomize slightly
+          
+          progress += increment;
+
+          // Cap at 99% for "Coming Soon" suspense, or 100% if we want to finish
+          if (progress >= 99) {
+            progress = 99;
+            clearInterval(interval); // Stop at 99%
+          }
+
+          // Update DOM
+          fill.style.width = progress + '%';
+          percentageText.textContent = Math.floor(progress) + '%';
+        }, 150);
+      }
+
+      /**
+       * Canvas Gravity/Antigravity Animation Logic
+       */
+      function initGravityCanvas() {
+        const canvas = document.getElementById('gravityCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let points = [];
+        let mouseX = -1000;
+        let mouseY = -1000;
+
+        // Configuration
+        const GAP = 35;           // Space between dots
+        const RADIUS = 1.5;       // Dot size
+        const REPEL_RADIUS = 180; // Mouse interaction range
+        const REPEL_STRENGTH = 8; // How hard points flee
+        const RETURN_SPEED = 0.08;// How fast points return
+        const COLOR = '#142E40';  // Banan blue
+
+        // Resize handler
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+          createPoints();
+        }
+
+        // Create grid of points
+        function createPoints() {
+          points = [];
+          const cols = Math.ceil(width / GAP);
+          const rows = Math.ceil(height / GAP);
+          
+          // Center the grid
+          const offsetX = (width - (cols * GAP)) / 2;
+          const offsetY = (height - (rows * GAP)) / 2;
+
+          for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+              const x = i * GAP + offsetX + GAP / 2;
+              const y = j * GAP + offsetY + GAP / 2;
+              points.push({
+                x: x,
+                y: y,
+                originX: x,
+                originY: y
+              });
+            }
+          }
+        }
+
+        // Animation Loop
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+          ctx.fillStyle = COLOR;
+          
+          // Slight transparency for the dots
+          ctx.globalAlpha = 0.4;
+
+          points.forEach(point => {
+            // Distance from mouse
+            const dx = mouseX - point.x;
+            const dy = mouseY - point.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Antigravity / Repel Logic
+            if (distance < REPEL_RADIUS) {
+              const angle = Math.atan2(dy, dx);
+              const force = (REPEL_RADIUS - distance) / REPEL_RADIUS;
+              
+              // Move away from mouse
+              point.x -= Math.cos(angle) * force * REPEL_STRENGTH;
+              point.y -= Math.sin(angle) * force * REPEL_STRENGTH;
+            }
+
+            // Return to origin (Spring physics)
+            const returnDx = point.originX - point.x;
+            const returnDy = point.originY - point.y;
+            
+            point.x += returnDx * RETURN_SPEED;
+            point.y += returnDy * RETURN_SPEED;
+
+            // Draw
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, RADIUS, 0, Math.PI * 2);
+            ctx.fill();
+          });
+
+          requestAnimationFrame(animate);
+        }
+
+        // Event Listeners
+        window.addEventListener('resize', resize);
+        
+        window.addEventListener('mousemove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouseX = e.clientX - rect.left;
+          mouseY = e.clientY - rect.top;
+        });
+        
+        window.addEventListener('touchmove', (e) => {
+          if(e.touches.length > 0) {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.touches[0].clientX - rect.left;
+            mouseY = e.touches[0].clientY - rect.top;
+          }
+        });
+
+        // Reset mouse when leaving window
+        document.addEventListener('mouseleave', () => {
+          mouseX = -1000;
+          mouseY = -1000;
+        });
+
+        // Init
+        resize();
+        animate();
+      }
+
+      // Start everything when DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
+        initLoadingBar();
+        initGravityCanvas();
+      });
+
+    </script>
+  </body>
+</html>
