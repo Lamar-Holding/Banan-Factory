@@ -39,44 +39,44 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: clamp(1rem, 4vw, 2.5rem);
         }
 
 
      /* Logo Container */
         .logo-container {
-        margin-bottom: auto;
-            
-            
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: clamp(8rem, 5vw, 4rem);
         }
 
         .logo {
-            /* Increased logo size and removed filters for better visibility */
-            max-width: 300px;
-            width: auto;
-            height: auto;
-            
+         width: 100%;
+         max-width: clamp(120px, 28vw, 260px);
+         height: auto;
         }
-
         /* Content */
         .content {
             text-align: center;
             /* Changed text color to dark teal for white background */
             color: #1a3d4d;
-            margin-bottom: auto;
+            margin-bottom: clamp(2rem, 5vw, 3.5rem);
             animation: fadeInUp 1s ease-out 0.3s both;
         }
 
         .title {
-            font-size: 3.5rem;
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: auto;
-            letter-spacing: 3px;
+            margin-bottom: 10rem;
+            letter-spacing: clamp(1px, 0.4vw, 3px);
             text-transform: uppercase;
             /* Updated gradient colors for white background */
-
+            background: linear-gradient(135deg, #1a3d4d 0%, #2a8fa1 50%, #4dd0e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
@@ -91,14 +91,13 @@
         /* Loading Section */
         .loading-section {
             width: 100%;
-            max-width: 400px;
+            max-width: clamp(250px, 28vw, 420px);;
             animation: fadeIn 1s ease-out 0.6s both;
             margin-bottom: auto;
         }
 
         .loading-text {
-            font-size: 1.2rem;
-            /* Updated loading text color */
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
             color: #1a3d4d;
             margin-bottom: 1.5rem;
             font-weight: 600;
@@ -123,7 +122,7 @@
             background: linear-gradient(90deg, #1a3d4d, #2a8fa1, #4dd0e1, #80deea);
             background-size: 300% 100%;
             border-radius: 50px;
-            animation: loading 3s ease-in-out forwards, shimmerBar 3s linear infinite;
+            animation: loading 3s ease-in-out forwards, shimmerBar 10s linear infinite;
             box-shadow: 0 2px 15px rgba(77, 208, 225, 0.4);
         }
 
@@ -138,11 +137,12 @@
 
         /* Footer */
         .footer {
-            position: absolute;
-            bottom: 2rem;
+            margin-top: auto;
+            padding-top: 2rem;
             /* Updated footer color for white background */
             color: #78909c;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+            text-align: center;
             animation: fadeIn 1s ease-out 1s both;
             z-index: 2;
         }
@@ -215,52 +215,7 @@
             }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo {
-                max-width: 320px;
-            }
-
-            .title {
-                font-size: 2.2rem;
-                letter-spacing: 2px;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-                margin-bottom: 2.5rem;
-            }
-
-            .loading-text {
-                font-size: 1rem;
-            }
-
-            .percentage {
-                font-size: 1.4rem;
-            }
-
-            .container {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo {
-                max-width: 260px;
-            }
-
-            .title {
-                font-size: 1.8rem;
-            }
-
-            .subtitle {
-                font-size: 0.9rem;
-            }
-
-            .loading-section {
-                max-width: auto;
-            }
-        }
+        
     </style>
 </head>
 <body>
