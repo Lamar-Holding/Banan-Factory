@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,19 +45,20 @@
         }
 
 
-     /* Logo Container */
+        /* Logo Container */
         .logo-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: clamp(8rem, 5vw, 4rem);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: clamp(2rem, 8vw, 6rem);
         }
 
         .logo {
-         width: 100%;
-         max-width: clamp(120px, 28vw, 260px);
-         height: auto;
+            width: 100%;
+            max-width: clamp(150px, 28vw, 260px);
+            height: auto;
         }
+
         /* Content */
         .content {
             text-align: center;
@@ -64,12 +66,13 @@
             color: #1a3d4d;
             margin-bottom: clamp(2rem, 5vw, 3.5rem);
             animation: fadeInUp 1s ease-out 0.3s both;
+            margin-top: auto;
         }
 
         .title {
             font-size: clamp(1.8rem, 6vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 10rem;
+            margin-bottom: clamp(3rem, 10vw, 8rem);
             letter-spacing: clamp(1px, 0.4vw, 3px);
             text-transform: uppercase;
             /* Updated gradient colors for white background */
@@ -83,7 +86,7 @@
             font-size: 1.3rem;
             /* Changed subtitle color for better readability */
             color: #546e7a;
-            margin-bottom: 3.5rem;
+            margin-bottom: clamp(1.5rem, 5vw, 3.5rem);
             font-weight: 400;
             letter-spacing: 1.5px;
         }
@@ -93,14 +96,14 @@
             width: 100%;
             max-width: clamp(250px, 28vw, 420px);;
             animation: fadeIn 1s ease-out 0.6s both;
-            margin-bottom: auto;
+            margin-bottom: clamp(2rem, 5vw, 3.5rem);;
         }
 
         .loading-text {
             font-size: clamp(0.9rem, 3vw, 1.2rem);
             color: #1a3d4d;
-            margin-bottom: 1.5rem;
             font-weight: 600;
+            margin-bottom: 1rem;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -153,6 +156,7 @@
                 opacity: 0;
                 transform: translateY(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -164,6 +168,7 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -174,15 +179,19 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px) scale(1);
             }
+
             50% {
                 transform: translateY(-15px) scale(1.02);
             }
@@ -192,6 +201,7 @@
             0% {
                 width: 0%;
             }
+
             100% {
                 width: 100%;
             }
@@ -201,26 +211,29 @@
             0% {
                 background-position: 300% center;
             }
+
             100% {
                 background-position: -300% center;
             }
         }
 
         @keyframes shimmer {
-            0%, 100% {
+
+            0%,
+            100% {
                 background-position: 0% center;
             }
+
             50% {
                 background-position: 200% center;
             }
         }
-
-        
     </style>
 </head>
+
 <body>
     <canvas id="particleCanvas"></canvas>
-    
+
     <div class="container">
         <div class="logo-container">
             <img src="Banan Factory.png" alt="Banan Logo" class="logo">
@@ -246,7 +259,7 @@
         // Particle System
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
-        
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
@@ -258,12 +271,12 @@
             radius: 150
         };
 
-        window.addEventListener('mousemove', function(event) {
+        window.addEventListener('mousemove', function (event) {
             mouse.x = event.x;
             mouse.y = event.y;
         });
 
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             init();
@@ -342,7 +355,7 @@
                 for (let b = a; b < particlesArray.length; b++) {
                     let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
                         + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                    
+
                     if (distance < (canvas.width / 7) * (canvas.height / 7)) {
                         opacityValue = 1 - (distance / 20000);
                         ctx.strokeStyle = `rgba(77, 208, 225, ${opacityValue * 0.3})`;
@@ -358,7 +371,7 @@
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
                 particlesArray[i].draw();
@@ -373,7 +386,7 @@
         // Loading Progress Animation
         let progress = 0;
         const percentageElement = document.getElementById('percentageText');
-        
+
         const loadingInterval = setInterval(() => {
             if (progress < 100) {
                 progress += Math.random() * 2 + 0.5;
@@ -385,4 +398,5 @@
         }, 60);
     </script>
 </body>
+
 </html>
