@@ -45,13 +45,22 @@
             padding: clamp(1rem, 4vw, 2.5rem);
         }
 
-
+        .main-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+        }
+        
         /* Logo Container */
         .logo-container {
             width: 100%;
             display: flex;
             justify-content: center;
             margin-bottom: clamp(2rem, 8vw, 6rem);
+            animation: fadeInDown 1s ease-out;
 
         }
 
@@ -68,7 +77,7 @@
             color: #1a3d4d;
             margin-bottom: clamp(2rem, 5vw, 3.5rem);
             animation: fadeInUp 1s ease-out 0.3s both;
-            margin-top: auto;
+            /* margin-top: auto; Removed for wrapper centering */
         }
 
         .title {
@@ -96,9 +105,11 @@
         /* Loading Section */
         .loading-section {
             width: 100%;
-            max-width: clamp(250px, 28vw, 420px);;
+            max-width: clamp(250px, 28vw, 420px);
+            ;
             animation: fadeIn 1s ease-out 0.6s both;
-            margin-top:clamp(2rem, 4vh, 6rem);;
+            margin-top: clamp(2rem, 4vh, 6rem);
+            ;
         }
 
         .loading-text {
@@ -143,7 +154,9 @@
         /* Footer */
         .footer {
             margin-top: auto;
-            padding-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             /* Updated footer color for white background */
             color: #1a3d4d;
             font-size: clamp(0.8rem, 2.5vw, 0.95rem);
@@ -230,6 +243,43 @@
                 background-position: 200% center;
             }
         }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                min-height: 100dvh;
+            }
+
+            .logo-container {
+                margin-bottom: 2rem;
+                flex: 0 1 auto;
+            }
+
+            .content {
+                margin-bottom: 1rem;
+                margin-top: 1rem;
+                flex: 0 1 auto;
+            }
+
+            .title {
+                margin-bottom: 0.5rem;
+                font-size: clamp(2rem, 8vw, 2.5rem);
+            }
+
+            .subtitle {
+                margin-bottom: 1rem;
+            }
+
+            .loading-section {
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+                flex: 0 1 auto;
+            }
+
+            .footer {
+                padding-bottom: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -241,14 +291,16 @@
             <img src="Banan Factory.png" alt="Banan Logo" class="logo">
         </div>
 
-        <div class="content">
-            <h1 class="title">Coming Soon</h1>
-            <p class="loading-text">Crafting Industrial Excellence</p>
-        </div>
+        <div class="main-content-wrapper">
+            <div class="content">
+                <h1 class="title">Coming Soon</h1>
+                <p class="loading-text">Crafting Industrial Excellence</p>
+            </div>
 
-        <div class="loading-section">
-            <div class="progress-container">
-                <div class="progress-bar"></div>
+            <div class="loading-section">
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
             </div>
         </div>
 
