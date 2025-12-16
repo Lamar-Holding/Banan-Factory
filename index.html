@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banan Factory - Coming Soon</title>
+    <title>Banan Factory</title>
     <link rel="icon" type="image/png" href="Banan Factory.png">
     <link rel="apple-touch-icon" href="Banan Factory.png">
     <style>
@@ -68,8 +68,8 @@
             width: 100%;
             max-width: clamp(150px, 26vw, 220px);
             height: auto;
+            animation: float 6s ease-in-out infinite;
         }
-
         /* Content */
         .content {
             text-align: center;
@@ -81,10 +81,10 @@
         }
 
         .title {
-            font-size: clamp(1.8rem, 6vw, 3.5rem);
+            font-size: clamp(1.5rem, 8vw, 3.5rem);
             font-weight: 700;
             margin-bottom: clamp(0.5rem, 3vh, 4rem);
-            letter-spacing: clamp(1px, 0.4vw, 3px);
+            letter-spacing: clamp(3px, 0.4vw, 3px);
             text-transform: uppercase;
             /* Updated gradient colors for white background */
             background: linear-gradient(135deg, #1a3d4d 0%, #2a8fa1 50%, #4dd0e1 100%);
@@ -113,7 +113,7 @@
         }
 
         .loading-text {
-            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            font-size: clamp(0.5rem, 2.5vw, 1.2rem);
             color: #1a3d4d;
             font-weight: 600;
             margin-bottom: 1rem;
@@ -272,8 +272,8 @@
             }
 
             .loading-section {
-                margin-top: 1rem;
-                margin-bottom: 2rem;
+                margin-top: 5rem;
+                margin-bottom: 3rem;
                 flex: 0 1 auto;
             }
 
